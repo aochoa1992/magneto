@@ -2,6 +2,7 @@ package com.magneto.magneto.services.impl;
 
 import com.magneto.magneto.services.IDnaService;
 import com.magneto.magneto.services.IMutantService;
+import com.magneto.magneto.utils.InputValidations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +15,30 @@ public class MutantService implements IMutantService {
     private char auxLetter = ' ';
     private int countLetter = 0;
     private IDnaService dnaService;
+    private InputValidations inputValidations;
 
     @Autowired
-    public MutantService(IDnaService dnaService) {
+    public MutantService(IDnaService dnaService, InputValidations inputValidations) {
         this.dnaService = dnaService;
+        this.inputValidations = inputValidations;
     }
 
     public boolean isMutant(List<String> dna) {
-        if(validateString(dna.toString())) {
-            int sizeSequence = 0;
-            boolean isMutant = false;
-            sizeSequence = getResultHorizontal(dna, dna.size(), dna.get(0).length());
-            sizeSequence = sizeSequence + getResultVertical(dna, dna.size(), dna.get(0).length());
+        int sizeSequence = 0;
+        boolean isMutant = false;
+        sizeSequence = getResultHorizontal(dna, dna.size(), dna.get(0).length());
+        sizeSequence = sizeSequence + getResultVertical(dna, dna.size(), dna.get(0).length());
+
+        if(inputValidations.validateObliqueProcess(dna)) {
             sizeSequence = sizeSequence + getResultOblique(dna, false);
             sizeSequence = sizeSequence + getResultOblique(dna, true);
-
-            if (sizeSequence > 2) {
-                isMutant = true;
-            }
-            dnaService.saveDNA(dna, isMutant);
-            return isMutant;
         }
-        return false;
+
+        if (sizeSequence > 2) {
+            isMutant = true;
+        }
+        dnaService.saveDNA(dna, isMutant);
+        return isMutant;
     }
 
     private int getResultHorizontal(List<String> listDna, int rows, int colums) {
@@ -79,13 +82,13 @@ public class MutantService implements IMutantService {
         for(int f = 0; f < cycle; f ++) {
             countLetter = 0;
             auxLetter = ' ';
-            for(int k = 0; k <= f; k ++) {
-                if(isReverse) {
+            for (int k = 0; k <= f; k++) {
+                if (isReverse) {
                     countLetter = validateSequence(logicReverse(stringLength, f, k, dnaSize, dna), countLetter);
                 } else {
                     countLetter = validateSequence(logic(f, k, dnaSize, dna), countLetter);
                 }
-                if(countLetter == 4) {
+                if (countLetter == 4) {
                     sizeSequence++;
                     break;
                 }
@@ -143,16 +146,5 @@ public class MutantService implements IMutantService {
             count = 1;
         }
         return count;
-    }
-
-    private boolean validateString(String dna) {
-        Scanner scanner = new Scanner(dna);
-        String validationResult = scanner.findInLine("[BDEFHIJKLMNÑOPQRSUVWYZ]+");
-        if (validationResult != null) {
-            scanner.close();
-            return false;
-        }
-        scanner.close();
-        return true;
     }
 }

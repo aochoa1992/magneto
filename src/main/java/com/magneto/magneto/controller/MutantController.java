@@ -3,6 +3,7 @@ package com.magneto.magneto.controller;
 import com.magneto.magneto.model.Stats;
 import com.magneto.magneto.services.IMutantService;
 import com.magneto.magneto.services.IStatsService;
+import com.magneto.magneto.utils.InputValidations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,19 +16,25 @@ public class MutantController {
 
     private final IMutantService mutantService;
     private final IStatsService statsService;
+    private final InputValidations inputValidations;
 
     @Autowired
-    public MutantController(IMutantService mutantService, IStatsService statsService) {
+    public MutantController(IMutantService mutantService, IStatsService statsService, InputValidations inputValidations) {
         this.mutantService = mutantService;
         this.statsService = statsService;
+        this.inputValidations = inputValidations;
     }
 
     @PostMapping("/mutant")
     public ResponseEntity getMutant(@RequestBody List<String> dna) {
-        if(this.mutantService.isMutant(dna)) {
-            return ResponseEntity.ok(HttpStatus.OK);
+        if(inputValidations.validateEachSequence(dna) && inputValidations.validateString(dna.toString())
+                && inputValidations.validateSizeArray(dna)) {
+            if (this.mutantService.isMutant(dna)) {
+                return ResponseEntity.ok(HttpStatus.OK);
+            }
+            return ResponseEntity.ok(HttpStatus.FORBIDDEN);
         }
-        return ResponseEntity.ok(HttpStatus.FORBIDDEN);
+        return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/stats")

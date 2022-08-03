@@ -2,6 +2,7 @@ package com.magneto.magneto.services.impl;
 
 import com.magneto.magneto.persistence.entities.DnaEntity;
 import com.magneto.magneto.services.IDnaService;
+import com.magneto.magneto.utils.InputValidations;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,13 @@ class MutantServiceTest {
     @Mock
     IDnaService dnaService;
 
+    @Mock
+    InputValidations inputValidations;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        mutantService = new MutantService(dnaService);
+        mutantService = new MutantService(dnaService, inputValidations);
     }
 
     @Test
@@ -41,6 +45,7 @@ class MutantServiceTest {
         dnaEntity.setSequence(dna.toString());
         dnaEntity.setIsMutant(true);
 
+        when(inputValidations.validateObliqueProcess(dna)).thenReturn(true);
         when(dnaService.saveDNA(dna, true)).thenReturn(dnaEntity);
 
         boolean result = mutantService.isMutant(dna);
@@ -63,6 +68,7 @@ class MutantServiceTest {
         dnaEntity.setSequence(dna.toString());
         dnaEntity.setIsMutant(true);
 
+        when(inputValidations.validateObliqueProcess(dna)).thenReturn(true);
         when(dnaService.saveDNA(dna, true)).thenReturn(dnaEntity);
 
         boolean result = mutantService.isMutant(dna);
