@@ -30,7 +30,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateString(dna.toString());
 
-        Assert.assertEquals(result, true);
+        validateResponse(result, true);
     }
 
     @Test
@@ -45,7 +45,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateString(dna.toString());
 
-        Assert.assertEquals(result, false);
+        validateResponse(result, false);
     }
 
     @Test
@@ -60,7 +60,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateEachSequence(dna);
 
-        Assert.assertEquals(result, true);
+        validateResponse(result, true);
     }
 
     @Test
@@ -75,7 +75,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateEachSequence(dna);
 
-        Assert.assertEquals(result, false);
+        validateResponse(result, false);
     }
 
     @Test
@@ -88,7 +88,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateSizeArray(dna);
 
-        Assert.assertEquals(result, true);
+        validateResponse(result, true);
     }
 
     @Test
@@ -100,7 +100,7 @@ class InputValidationsTest {
 
         boolean result = inputValidations.validateSizeArray(dna);
 
-        Assert.assertEquals(result, false);
+        validateResponse(result, false);
     }
 
     @Test
@@ -112,7 +112,7 @@ class InputValidationsTest {
         dna.add("AGAAGG");
 
         boolean result = inputValidations.validateObliqueProcess(dna);
-        Assert.assertEquals(result, true);
+        validateResponse(result, true);
     }
 
     @Test
@@ -123,6 +123,11 @@ class InputValidationsTest {
         dna.add("TTATGT");
 
         boolean result = inputValidations.validateObliqueProcess(dna);
-        Assert.assertEquals(result, false);
+        //Assert.assertEquals(result, false);
+        validateResponse(result, false);
+    }
+
+    void validateResponse(boolean result, boolean value) {
+        Assert.assertEquals(result, value);
     }
 }

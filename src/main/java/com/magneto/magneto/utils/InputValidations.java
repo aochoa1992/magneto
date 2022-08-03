@@ -8,8 +8,6 @@ import java.util.Scanner;
 @Service
 public class InputValidations {
 
-    public InputValidations() {}
-
     public boolean validateString(String dna) {
         Scanner scanner = new Scanner(dna);
         String validationResult = scanner.findInLine("[BDEFHIJKLMNÑOPQRSUVWYZ]+");
@@ -35,16 +33,10 @@ public class InputValidations {
     }
 
     public boolean validateSizeArray(List<String> dna) {
-        if(dna.get(0).length() > 3 || dna.size() > 3) {
-            return true;
-        }
-         return false;
+        return (dna.get(0).length() > 3 || dna.size() > 3);
     }
 
     public boolean validateObliqueProcess(List<String> dna) {
-        if(dna.get(0).length() > 3 && dna.size() > 3) {
-            return true;
-        }
-        return false;
+        return (dna.get(0).length() > 3 && dna.size() > 3);
     }
 }

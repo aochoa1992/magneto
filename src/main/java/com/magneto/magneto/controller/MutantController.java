@@ -1,7 +1,6 @@
 package com.magneto.magneto.controller;
 
 import com.magneto.magneto.services.IMutantService;
-import com.magneto.magneto.services.IStatsService;
 import com.magneto.magneto.utils.InputValidations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
