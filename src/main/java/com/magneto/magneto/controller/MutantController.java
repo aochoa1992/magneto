@@ -1,6 +1,5 @@
 package com.magneto.magneto.controller;
 
-import com.magneto.magneto.model.Stats;
 import com.magneto.magneto.services.IMutantService;
 import com.magneto.magneto.services.IStatsService;
 import com.magneto.magneto.utils.InputValidations;
@@ -15,13 +14,11 @@ import java.util.List;
 public class MutantController {
 
     private final IMutantService mutantService;
-    private final IStatsService statsService;
     private final InputValidations inputValidations;
 
     @Autowired
-    public MutantController(IMutantService mutantService, IStatsService statsService, InputValidations inputValidations) {
+    public MutantController(IMutantService mutantService, InputValidations inputValidations) {
         this.mutantService = mutantService;
-        this.statsService = statsService;
         this.inputValidations = inputValidations;
     }
 
@@ -35,10 +32,5 @@ public class MutantController {
             return ResponseEntity.ok(HttpStatus.FORBIDDEN);
         }
         return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/stats")
-    public Stats getStats() {
-        return statsService.getStats();
     }
 }

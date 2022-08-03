@@ -25,15 +25,12 @@ class MutantControllerTest {
     IMutantService mutantService;
 
     @Mock
-    IStatsService statsService;
-
-    @Mock
     InputValidations inputValidations;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        mutantController = new MutantController(mutantService, statsService, inputValidations);
+        mutantController = new MutantController(mutantService, inputValidations);
     }
 
     @Test
@@ -91,18 +88,5 @@ class MutantControllerTest {
         ResponseEntity result = mutantController.getMutant(dna);
 
         Assert.assertEquals(ResponseEntity.ok(HttpStatus.BAD_REQUEST), result);
-    }
-
-    @Test
-    void getStats() {
-        Stats stats =  new Stats();
-        stats.setCountHumanDna(100);
-        stats.setCountMutantDna(40);
-        stats.setRatio(stats.getCountMutantDna() / stats.getCountHumanDna());
-
-        when(statsService.getStats()).thenReturn(stats);
-        Stats result =  mutantController.getStats();
-
-        Assert.assertEquals(stats , result);
     }
 }
