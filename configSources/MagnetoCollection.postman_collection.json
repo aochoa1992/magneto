@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "ab4eb421-26ad-4c51-a570-fabbf4442b36",
+		"name": "MagnetoCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Mutant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t\"ATGCGA\",\r\n\t\"CAGTGC\",\r\n\t\"TTATGT\",\r\n\t\"AGAAGG\",\r\n\t\"CCCCTA\",\r\n\t\"TCACTG\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/mutant",
+					"protocol": "http",
+					"host": [
+						"magneto-env",
+						"eba-srwupzga",
+						"sa-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Human",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t\"ATGCTA\",\r\n\t\"CAGTGC\",\r\n\t\"TTATGT\",\r\n\t\"AGAAGG\",\r\n\t\"CCCCTA\",\r\n\t\"TCACTG\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/mutant",
+					"protocol": "http",
+					"host": [
+						"magneto-env",
+						"eba-srwupzga",
+						"sa-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatMutant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t\"ATGCTAM\",\r\n\t\"CAGTGC\",\r\n\t\"TTATGT\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/mutant",
+					"protocol": "http",
+					"host": [
+						"magneto-env",
+						"eba-srwupzga",
+						"sa-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormatMutant2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t\"ATGCTM\",\r\n\t\"CAGTGC\",\r\n\t\"TTATGT\",\r\n\t\"AGAAGG\",\r\n\t\"CCCCTA\",\r\n\t\"TCACTG\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/mutant",
+					"protocol": "http",
+					"host": [
+						"magneto-env",
+						"eba-srwupzga",
+						"sa-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/stats",
+					"protocol": "http",
+					"host": [
+						"magneto-env",
+						"eba-srwupzga",
+						"sa-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
