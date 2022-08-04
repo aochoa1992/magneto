@@ -14,6 +14,29 @@ Nota: En el archivo build.gradle se importan las librerías utilizadas para la c
 
 #La aplicación se encuentra desplegada en un Elastic Beanstalk de aws y para probar los diferentes endpoins debemos tener en cuenta lo siguiente:
 
+Servicio post "/user"
+
+Este servicio se encarga de generar un token y recibe como parámetro el siguiente json:
+
+#request
+
+{
+	"userName": "xxx"
+}
+
+#Response 
+
+{
+    "userName": "xxx",
+    "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQWxlam8iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjU5NTc4MDQ0LCJleHAiOjE2NTk1Nzg2NDR9.llXZttOtSdq0nmgASM7p7nab_lIAFqXVVy-kRtDzPV3JI9L1vefzzkuAGUeodvkfdbG8Y0YAEPHbrMT5NtmGLg"
+}
+ 
+Se debe incluir el token generado en los header de todas las peticiones que se hagan 
+  
+#Ejemplo Header:
+ Key: Authorization
+ Value: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQWxlam8iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjU5NTc3OTIyLCJleHAiOjE2NTk1Nzg1MjJ9.Qk-eQx_pahCQMiZQfsDrVjlOHp0fiRq8m2vmKSeNPycGqyot9Jg58aJwjBYgl0u4ViqlOHWNUo3NcRbooYAj3A
+
 Servicio post "/mutant": 
  
 valida si una secuencia de ADN ingresada pertenece a un mutante o un humano y guarda el registro en la base de datos, 

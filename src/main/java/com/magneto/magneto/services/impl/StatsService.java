@@ -2,7 +2,6 @@ package com.magneto.magneto.services.impl;
 
 import com.magneto.magneto.model.Stats;
 import com.magneto.magneto.persistence.entities.DnaEntity;
-import com.magneto.magneto.persistence.repositories.DnaRepository;
 import com.magneto.magneto.services.IDnaService;
 import com.magneto.magneto.services.IStatsService;
 import org.springframework.stereotype.Service;
