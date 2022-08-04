@@ -34,10 +34,6 @@ Ejemplo:
    "TCACTG"
 ]
 
-La url expuesta para la creación y validación de la secuencia es: 
-
-http://magneto-env.eba-srwupzga.sa-east-1.elasticbeanstalk.com/mutant
-
 Servicios get "/stats":
 
 Retorna las estadisticas de los ADN's evaluados y no requiere parámetros 
